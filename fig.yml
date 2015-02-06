@@ -1,0 +1,18 @@
+
+elasticsearch:
+  image: ehazlett/elasticsearch
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+logstash:
+  image: ehazlett/logstash
+  command: -f /etc/logstash.conf.sample
+  ports:
+    - "5000:5000"
+    - "5000:5000/udp"
+  links:
+    - elasticsearch
+kibana:
+  image: ehazlett/kibana
+  ports:
+    - "80:80"
